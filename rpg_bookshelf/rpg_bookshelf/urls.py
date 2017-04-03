@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+from profiles.views import (
+    IndexView,
+    LoginView,
+    LogoutView,
+    ProfileView,
+    RegisterProfileView
+)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^register', RegisterProfileView.as_view(), name='register-profile'),
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^login', LoginView.as_view(), name='login'),
+    url(r'^logout', LogoutView.as_view(), name='logout'),
+    url(r'^profile/(?P<id>(\d+))', ProfileView.as_view(), name='profile')
 ]

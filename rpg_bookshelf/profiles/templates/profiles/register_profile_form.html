@@ -1,0 +1,13 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<h2>Rejestracja</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <strong>Nazwa użytkownika:</strong>{{ form.username }} <br>
+    <strong>Adres e-mail:</strong>{{ form.email }} <br>
+    <strong>Hasło:</strong>{{ form.password }} <br>
+    <input type="Submit" value="Zarejestruj">
+</form>
+
+{% endblock %}
