@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-MEDIA_ROOT = "/media/"
+LOGIN_URL = '/login/'
+
+MEDIA_ROOT = '/media/'
 # Application definition
 
 INSTALLED_APPS = [

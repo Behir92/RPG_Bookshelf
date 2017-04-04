@@ -1,0 +1,10 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <strong> Imiona i nazwiska autora lub autorki: </strong> {{ form.name }}
+<input type="submit" value="Zapisz">
+</form>
+
+{% endblock %}

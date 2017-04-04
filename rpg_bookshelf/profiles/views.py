@@ -1,7 +1,9 @@
 from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.views import View
+from django.views.generic.edit import UpdateView, DeleteView
 from profiles.forms import AuthForm,RegisterProfileForm
 from profiles.models import Profile
 # Create your views here.
@@ -21,8 +23,9 @@ class RegisterProfileView(View):
         form = RegisterProfileForm(data=request.POST)
         ctx = {'form': form}
         if form.is_valid():
-            profile = form.save()
-            login(request,profile)
+            user = form.save()
+            profile = Profile.objects.create(user=user)
+            login(request,user)
             return HttpResponseRedirect(reverse('index'))
         else:
             return render(request, 'profiles/register_profile_form.html', ctx)
@@ -50,7 +53,13 @@ class LogoutView(View):
 
 
 class ProfileView(View):
-    def get(self, request,id):
-        profile = User.objects.get(pk=id)
+    def get(self, request,user_id):
+        profile = Profile.objects.get(user_id=user_id)
         ctx = {'profile': profile}
         return render(request, 'profiles/profile.html', ctx)
+
+class UpdateProfileView(UpdateView):
+    template = 'profiles/profile_form.html'
+    model = Profile
+    fields = ['nick','avatar','fav_system']
+    success_url = 'library/index.html'

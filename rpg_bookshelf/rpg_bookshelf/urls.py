@@ -15,18 +15,47 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from library.views import (
+AddAuthorView,
+AddPublisherView,
+AddSystemView,
+ChangeAuthorView,
+ChangePublisherView,
+ChangeSystemView,
+AuthorView,
+PublisherView,
+SystemView,
+AuthorListView,
+PublisherListView,
+SystemListView,
+
+)
 from profiles.views import (
     IndexView,
     LoginView,
     LogoutView,
     ProfileView,
-    RegisterProfileView
+    RegisterProfileView,
+    UpdateProfileView
 )
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^register', RegisterProfileView.as_view(), name='register-profile'),
+    url(r'^register$', RegisterProfileView.as_view(), name='register-profile'),
     url(r'^$', IndexView.as_view(), name='index'),
-    url(r'^login', LoginView.as_view(), name='login'),
-    url(r'^logout', LogoutView.as_view(), name='logout'),
-    url(r'^profile/(?P<id>(\d+))', ProfileView.as_view(), name='profile')
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout$', LogoutView.as_view(), name='logout'),
+    url(r'^profile/(?P<user_id>(\d+))$', ProfileView.as_view(), name='profile'),
+    url(r'^update_profile/(?P<pk>(\d+))$', UpdateProfileView.as_view(), name='update-profile'),
+    url(r'^systems/$', SystemListView.as_view(), name='system-list'),
+    url(r'^system_details/(?P<pk>(\d+))$', SystemView.as_view(), name='system-details'),
+    url(r'^add_system/$', AddSystemView.as_view(), name='add-system'),
+    url(r'^change_system/(?P<pk>(\d+))$', ChangeSystemView.as_view(), name='change-system'),
+    url(r'^publishers/$', PublisherListView.as_view(), name='publisher-list'),
+    url(r'^publisher_details/(?P<pk>(\d+))$', PublisherView.as_view(), name='publisher-details'),
+    url(r'^add_publisher/$', AddPublisherView.as_view(), name='add-publisher'),
+    url(r'^change_publisher/(?P<pk>(\d+))$', ChangePublisherView.as_view(), name='change-publisher'),
+    url(r'^authors/$', AuthorListView.as_view(), name='author-list'),
+    url(r'^author_details/(?P<pk>(\d+))$', AuthorView.as_view(), name='author-details'),
+    url(r'^add_author/$', AddAuthorView.as_view(), name='add-author'),
+    url(r'^change_author/(?P<pk>(\d+))$', ChangeAuthorView.as_view(), name='change-author')
 ]

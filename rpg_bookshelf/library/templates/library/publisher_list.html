@@ -1,0 +1,15 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<h2 align="center">Wydawnictwa</h2>
+<ul>
+{% for publisher in publishers %}
+    <li class="list-group-item"><a href="{% url 'publisher-details' pk=publisher.pk %}"><strong>{{ publisher.name }}</strong></a>
+         {% if perms.library.change_publisher %} <a href="{% url 'change-publisher' pk=publisher.pk %}" class="btn btn-default">Zmień</a>{% endif %}<br>
+        <strong>Opis:</strong> {{ publisher.description }}</li>
+{% empty %}
+    <p align="center">Nie ma jeszcze żadnych wydawnictw</p>
+{% endfor %}
+</ul>
+<p align="center">Nie widzisz jakiegoś wydawnictwa na liście? <a href="{% url 'add-publisher' %}">Dopisz je</a>!</p>
+{% endblock %}

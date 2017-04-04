@@ -1,0 +1,22 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><strong> Nazwa wydawnictwa: </strong></td><td> {{ form.name }} </td>
+        </tr>
+        <tr>
+            <td><strong> Strona internetowa: </strong></td><td> {{ form.web_page }} </td>
+        </tr>
+        <td><strong> Opis: </strong></td><td>{{ form.description }}</td>
+        <tr>
+            <td><strong> Logo: </strong></td><td> {{ form.publisher_logo }}</td>
+        </tr>
+    </table>
+    <br>
+<input type="submit" value="Zapisz">
+</form>
+
+{% endblock %}

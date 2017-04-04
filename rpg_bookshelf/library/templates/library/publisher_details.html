@@ -1,0 +1,11 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<h2 align="center">{{ publisher.name }}</h2>
+{{ publisher.publisher_logo }}<br> <br>
+<strong>Opis: </strong> {{ publisher.description }}<br>
+<strong>Strona internetowa: </strong><a href="{{ publisher.web_page }}">{{ publisher.web_page }}</a>
+<br>
+<br>
+<h4>Podręczniki:</h4>
+{% endblock %}

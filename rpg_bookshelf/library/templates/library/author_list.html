@@ -1,0 +1,14 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<h2 align="center">Autorzy</h2>
+<ul>
+{% for author in authors %}
+    <li class="list-group-item"><a href="{% url 'author-details' pk=author.pk %}"><strong>{{ author.name }}</strong></a>
+         {% if perms.library.change_author %} <a href="{% url 'change-author' pk=author.pk %}" class="btn btn-default">Zmień</a>{% endif %}</li>
+{% empty %}
+    <p align="center">Nie ma jeszcze żadnych autorów</p>
+{% endfor %}
+</ul>
+<p align="center">Nie widzisz jakiegoś autora lub autorki na liście? <a href="{% url 'add-author' %}">Dopisz tę osobę</a>!</p>
+{% endblock %}

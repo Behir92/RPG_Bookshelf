@@ -4,9 +4,17 @@
 <h2>Rejestracja</h2>
 <form action="" method="post">
     {% csrf_token %}
-    <strong>Nazwa użytkownika:</strong>{{ form.username }} <br>
-    <strong>Adres e-mail:</strong>{{ form.email }} <br>
-    <strong>Hasło:</strong>{{ form.password }} <br>
+    <table>
+        <tr>
+            <td><strong>Nazwa użytkownika:</strong></td><td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td><strong>Adres e-mail:</strong></td><td>{{ form.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Hasło:</strong></td><td>{{ form.password }}</td>
+        </tr>
+    </table>
     <input type="Submit" value="Zarejestruj">
 </form>
 

@@ -1,0 +1,15 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<h2 align="center">Systemy RPG</h2>
+<ul>
+{% for system in systems %}
+    <li class="list-group-item"><a href="{% url 'system-details' pk=system.pk %}"><strong>{{ system.name }}</strong></a>
+         {% if perms.library.change_system %} <a href="{% url 'change-system' pk=system.pk %}" class="btn btn-default">Zmień</a>{% endif %}<br>
+    <i>Edycja: {{ system.edition }}</i></li>
+{% empty %}
+Nie ma jeszcze żadnych systemów
+{% endfor %}
+</ul>
+<p align="center">Nie widzisz jakiegoś systemu na liście? <a href="{% url 'add-system' %}">Dopisz go</a>!</p>
+{% endblock %}

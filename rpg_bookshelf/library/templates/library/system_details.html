@@ -1,0 +1,11 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<h2 align="center">{{ system.name }}</h2>
+{{ system.sys_logo }}<br> <br>
+<strong>Edycja: </strong><i>{{ system.edition }}</i><br>
+<strong>Opis: </strong> {{ system.description }}
+<br>
+<br>
+<h4>Podręczniki:</h4>
+{% endblock %}

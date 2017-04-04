@@ -1,0 +1,12 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <strong> Nick: </strong> {{ form.nick }} <br>
+    <strong> Ulubiony system: </strong> {{ form.fav_system }}<br>
+    <strong> Avatar </strong> {{ form.avatar }}<br>
+<input type="submit" value="Zapisz">
+</form>
+
+{% endblock %}
