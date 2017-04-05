@@ -11,9 +11,12 @@ class Profile(models.Model):
     nick = models.CharField(max_length=32)
     fav_system = models.CharField(max_length=128)
 
-    def __str__(self):
-        return self.user.username
-
     class Meta:
         verbose_name = "Profil"
         verbose_name_plural = "Profile"
+
+    def __str__(self):
+        return self.user.username
+
+    def get_absolute_url(self):
+        return "/profile/{}".format(self.user.profile.id)
