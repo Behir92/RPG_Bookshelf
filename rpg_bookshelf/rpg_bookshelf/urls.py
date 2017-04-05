@@ -17,25 +17,29 @@ from django.conf.urls import url
 from django.contrib import admin
 from library.views import (
 AddAuthorView,
+AddBookToShelfView,
 AddBookView,
 AddPublisherView,
 AddSystemView,
+AuthorListView,
+AuthorView,
 BookListView,
 BookView,
 ChangeAuthorView,
 ChangeBookView,
 ChangePublisherView,
 ChangeSystemView,
-AuthorView,
+DeleteBookFromShelf,
+IndexView,
 PublisherView,
-SystemView,
-AuthorListView,
 PublisherListView,
+SystemView,
+SearchView,
 SystemListView,
+ShelfView
 
 )
 from profiles.views import (
-    IndexView,
     LoginView,
     LogoutView,
     ProfileView,
@@ -66,4 +70,8 @@ urlpatterns = [
     url(r'^book_details/(?P<pk>(\d+))$', BookView.as_view(), name='book-details'),
     url(r'^add_book/$', AddBookView.as_view(), name='add-book'),
     url(r'^change_book/(?P<pk>(\d+))$', ChangeBookView.as_view(), name='change-book'),
+    url(r'search_results/', SearchView.as_view(), name='search'),
+    url(r'shelf/(?P<user_id>(\d+))$', ShelfView.as_view(), name='shelf'),
+    url(r'shelf/add/(?P<book_id>(\d+))$', AddBookToShelfView.as_view(), name='shelf-add'),
+    url(r'shelf/delete/(?P<pk>(\d+))$', DeleteBookFromShelf.as_view(), name='shelf-delete')
 ]
