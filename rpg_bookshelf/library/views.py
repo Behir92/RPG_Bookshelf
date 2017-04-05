@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from .models import (
+    Book,
     Author,
     Publisher,
     System
@@ -74,4 +75,28 @@ class AddAuthorView(LoginRequiredMixin,CreateView):
 class ChangeAuthorView(PermissionRequiredMixin,UpdateView):
     permission_required = ['library.change_author']
     model = Author
+    fields = '__all__'
+
+class BookListView(View):
+    def get(self,request):
+        books = Book.objects.all().order_by('title')
+        ctx = {'books': books}
+        return render(request, 'library/book_list.html', ctx)
+
+class BookView(View):
+    def get(self,request,pk):
+        book = Book.objects.get(pk=pk)
+        authors = Book.objects.get(pk=pk).authors.all()
+        ctx = {'book': book,
+               'authors': authors}
+        return render(request, 'library/book_details.html', ctx)
+
+class AddBookView(LoginRequiredMixin,CreateView):
+    model = Book
+    fields = '__all__'
+    success_url = '/books/'
+
+class ChangeBookView(PermissionRequiredMixin,UpdateView):
+    permission_required = ['library.change_book']
+    model = Book
     fields = '__all__'
