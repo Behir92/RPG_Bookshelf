@@ -53,8 +53,8 @@ class LogoutView(View):
 
 
 class ProfileView(View):
-    def get(self, request,user_id):
-        profile = Profile.objects.get(user_id=user_id)
+    def get(self, request,profile_id):
+        profile = Profile.objects.get(pk=profile_id)
         ctx = {'profile': profile}
         return render(request, 'profiles/profile.html', ctx)
 
@@ -62,4 +62,3 @@ class UpdateProfileView(UpdateView):
     template = 'profiles/profile_form.html'
     model = Profile
     fields = ['nick','avatar','fav_system']
-    success_url = 'library/index.html'
