@@ -17,9 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from library.views import (
 AddAuthorView,
+AddBookView,
 AddPublisherView,
 AddSystemView,
+BookListView,
+BookView,
 ChangeAuthorView,
+ChangeBookView,
 ChangePublisherView,
 ChangeSystemView,
 AuthorView,
@@ -44,7 +48,7 @@ urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout$', LogoutView.as_view(), name='logout'),
-    url(r'^profile/(?P<user_id>(\d+))$', ProfileView.as_view(), name='profile'),
+    url(r'^profile/(?P<profile_id>(\d+))$', ProfileView.as_view(), name='profile'),
     url(r'^update_profile/(?P<pk>(\d+))$', UpdateProfileView.as_view(), name='update-profile'),
     url(r'^systems/$', SystemListView.as_view(), name='system-list'),
     url(r'^system_details/(?P<pk>(\d+))$', SystemView.as_view(), name='system-details'),
@@ -57,5 +61,9 @@ urlpatterns = [
     url(r'^authors/$', AuthorListView.as_view(), name='author-list'),
     url(r'^author_details/(?P<pk>(\d+))$', AuthorView.as_view(), name='author-details'),
     url(r'^add_author/$', AddAuthorView.as_view(), name='add-author'),
-    url(r'^change_author/(?P<pk>(\d+))$', ChangeAuthorView.as_view(), name='change-author')
+    url(r'^change_author/(?P<pk>(\d+))$', ChangeAuthorView.as_view(), name='change-author'),
+    url(r'^books/$', BookListView.as_view(), name='book-list'),
+    url(r'^book_details/(?P<pk>(\d+))$', BookView.as_view(), name='book-details'),
+    url(r'^add_book/$', AddBookView.as_view(), name='add-book'),
+    url(r'^change_book/(?P<pk>(\d+))$', ChangeBookView.as_view(), name='change-book'),
 ]
