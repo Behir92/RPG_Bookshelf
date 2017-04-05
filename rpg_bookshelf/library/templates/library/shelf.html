@@ -1,15 +1,14 @@
 {% extends 'library/index.html' %}
 
 {% block content %}
-<h2 align="center">Podręczniki</h2>
+<h2 align="center">Podręczniki użytkownika {{ user.username }}</h2>
 <ul>
-{% for book in books %}
-    <li class="list-group-item"><a href="{% url 'book-details' pk=book.pk %}"><strong>{{ book.title }}</strong></a>
-         {% if perms.library.change_book %} <a href="{% url 'change-book' pk=book.pk %}" class="btn btn-default">Zmień</a>{% endif %}<br>
-    <strong>System: </strong>{{ book.system }}, <strong> Edycja: </strong> {{ book.system.edition }}</li>
+{% for book in shelf %}
+    <li class="list-group-item"><a href="{% url 'book-details' pk=book.book.pk %}"><strong>{{ book.book.title }}</strong></a>
+        {% if request.user.id == book.user.id %} <a href="{% url 'shelf-delete' pk=book.pk %}" class="btn btn-default">Usuń</a> {% endif %} <br>
+    <strong>System: </strong>{{ book.book.system }}, <strong> Edycja: </strong> {{ book.book.system.edition }}</li>
 {% empty %}
     <p align="center">Nie ma jeszcze żadnych podręczników</p>
 {% endfor %}
 </ul>
-<p align="center">Nie widzisz jakiegoś podręcznika na liście? <a href="{% url 'add-book' %}">Dopisz go</a>!</p>
 {% endblock %}

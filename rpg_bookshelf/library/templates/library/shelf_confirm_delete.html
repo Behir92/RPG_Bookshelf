@@ -1,5 +1,13 @@
+{% extends 'library/index.html' %}
+
+{% block content %}
+{% if request.user.id == object.user.id %}
 <form action="" method="post">
     {% csrf_token %}
-    <p>Czy jesteś pewien, że chcesz usunąć {{ object }}</p>
+    <p>Czy jesteś pewien, że chcesz usunąć {{ object.book.title }}?</p>
     <input type="submit" value="Potwierdź">
 </form>
+{% else %}
+<p>Nie masz uprawnień do usuwania książek z półek innych użytkowników</p>
+{% endif %}
+{% endblock %}

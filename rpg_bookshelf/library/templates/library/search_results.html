@@ -1,12 +1,17 @@
-{% extends 'exercises/base.html' %}
+{% extends 'library/index.html' %}
 
 {% block content %}
-<form action="{% url 'student-search' %}" method="POST">
+<form action="{% url 'search' %}" method="POST">
      {% csrf_token %}
     {{ form }}
 <input type="submit" value="Szukaj">
 </form>
-{% block results %}
-{% endblock %}
 
+<ol>
+{% for book in results %}
+<li><a href="{{ book.get_absolute_url }}">{{book.title}}</a></li>
+    {% empty %}
+    Pusto
+{% endfor %}
+</ol>
 {% endblock %}

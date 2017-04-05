@@ -11,13 +11,15 @@
             <td><strong>Tytuł: </strong></td><td> {{ form.title }}</td>
         </tr>
         <tr>
-            <td><strong>System: </strong></td> <td>{{ form.system }}</td>
+            <td><strong>System: </strong></td> <td>{{ form.system }}<br>
+        <a href="{% url 'add-system' %}" target="_blank">Dodaj system</a></td>
         </tr>
         <tr>
             <td><strong>Typ Podręcznika: </strong></td><td>{{ form.type }}</td>
         </tr>
         <tr>
-            <td><strong>Autorzy: </strong></td><td>{{ form.authors }}</td>
+            <td><strong>Autorzy: </strong></td><td>{{ form.authors }}<br>
+        <a href="{% url 'add-author' %}" target="_blank">Dodaj autora/autorkę</a></td>
         </tr>
         <tr>
             <td><strong>Tłumaczenie: </strong></td><td> {{ form.translation}}</td>
@@ -26,7 +28,8 @@
         <td><strong>Ilustratorzy:</strong></td> <td>{{ form.illustrations }}</td>
     </tr>
     <tr>
-        <td><strong>Wydawca:</strong></td> <td> {{ form.publisher }}</td>
+        <td><strong>Wydawnictwo:</strong></td> <td> {{ form.publisher }}<br>
+        <a href="{% url 'add-publisher' %}" target="_blank">Dodaj wydawnictwo</a></td>
     </tr>
     <tr>
         <td><strong>Liczba stron:</strong></td> <td>{{ form.pages }}</td>
