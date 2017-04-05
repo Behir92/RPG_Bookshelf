@@ -68,8 +68,8 @@ class Book(models.Model):
     system = models.ForeignKey(System)
     type = models.IntegerField(choices=TYPE)
     authors = models.ManyToManyField(Author)
-    translation = models.CharField(max_length=3000)
-    ilustrations = models.CharField(max_length=3000)
+    translation = models.CharField(max_length=3000, blank=True, null=True)
+    illustrations = models.CharField(max_length=3000, blank=True, null=True)
     publisher = models.ForeignKey(Publisher)
     pages = models.IntegerField()
     year = models.IntegerField()
@@ -79,6 +79,9 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return "/book_details/{}".format(self.pk)
 
 
 class Shelf(models.Model):
