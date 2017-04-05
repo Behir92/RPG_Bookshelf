@@ -8,9 +8,6 @@ from profiles.forms import AuthForm,RegisterProfileForm
 from profiles.models import Profile
 # Create your views here.
 
-class IndexView(View):
-    def get(self,request):
-        return render(request,'library/start.html', {})
 
 class RegisterProfileView(View):
 

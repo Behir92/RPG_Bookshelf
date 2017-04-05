@@ -5,6 +5,7 @@
 <strong>Pseudonim:</strong> {{ profile.nick }} <br>
 <strong>Ulubiony system:</strong> {{ profile.fav_system }}
 <br>
+{% if request.user.id == profile.user.id %}
 <a href="/update_profile/{{ profile.id }}" class = "btn btn-default">Zmień dane</a>
-
+{% endif %}
 {% endblock %}

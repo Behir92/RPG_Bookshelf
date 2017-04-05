@@ -1,6 +1,7 @@
 {% extends 'library/index.html' %}
 
 {% block content %}
+{% if request.user.id == profile.user.id %}
 <form action="" method="post">
     {% csrf_token %}
     <strong> Nick: </strong> {{ form.nick }} <br>
@@ -8,5 +9,7 @@
     <strong> Avatar </strong> {{ form.avatar }}<br>
 <input type="submit" value="Zapisz">
 </form>
-
+{% else %}
+<p> Nie masz uprawnień do edycji cudzego profilu</p>
+{% endif %}
 {% endblock %}
