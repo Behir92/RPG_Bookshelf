@@ -8,4 +8,7 @@
 <br>
 <br>
 <h4>Podręczniki:</h4>
+{% for book in publisher.book_set.all %}
+    <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
+{% endfor %}
 {% endblock %}

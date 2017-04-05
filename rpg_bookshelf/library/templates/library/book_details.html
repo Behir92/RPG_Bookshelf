@@ -1,8 +1,44 @@
 {% extends 'library/index.html' %}
 
 {% block content %}
-<h2 align="center">{{ author }}</h2>
-<br>
-<br>
-<h4>Podręczniki:</h4>
+<h4 align="center">{{ book.title }}</h4>
+{{ book.cover }}<br>
+<table>
+    <tr>
+        <td><strong>System:</strong></td><td><a href="{% url 'system-details' pk=book.system.id %}"> {{ book.system }}</a></td>
+    </tr>
+    <tr>
+        <td><strong>Rodzaj:</strong></td> <td>{{ book.type }}</td>
+    </tr>
+    <tr>
+        <td><strong>System:</strong></td> <td>{{ book.system }}</td>
+    </tr>
+    <tr>
+        <td><strong>Autorzy:</strong></td> <td> {% for author in authors %} <a href="{{ author.get_absolute_url }}">{{ author }}</a>,
+        {% empty %} Nie dodano jeszcze żadnego autora {% endfor %}</td>
+    </tr>
+    {% if book.translation != empty %}
+    <tr>
+        <td><strong>Tłumacze:</strong></td> <td>{{ book.translation }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td><strong>Ilustratorzy:</strong></td> <td>{{ book.illustrations }}</td>
+    </tr>
+    <tr>
+        <td><strong>Wydawca:</strong></td> <td> <a href="{% url 'publisher-details' pk=book.publisher.id %}">{{ book.publisher }}</a></td>
+    </tr>
+    <tr>
+        <td><strong>Liczba stron:</strong></td> <td>{{ book.pages }}</td>
+    </tr>
+    <tr>
+        <td><strong>Okładka:</strong></td> <td>{{ book.cover_type }}</td>
+    </tr>
+    <tr>
+        <td><strong>ISBN:</strong></td> <td>{{ book.isbn }}</td>
+    </tr>
+</table>
+
+<h4 align="center"><b>Opis</b></h4>
+{{ book.description }}
 {% endblock %}

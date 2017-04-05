@@ -3,7 +3,41 @@
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    <strong> Imiona i nazwiska autora lub autorki: </strong> {{ form.name }}
+    <table>
+        <tr>
+            <td><strong>Okładka: </strong></td> <td>{{ form.cover }}</td>
+        </tr>
+        <tr>
+            <td><strong>Tytuł: </strong></td><td> {{ form.title }}</td>
+        </tr>
+        <tr>
+            <td><strong>System: </strong></td> <td>{{ form.system }}</td>
+        </tr>
+        <tr>
+            <td><strong>Typ Podręcznika: </strong></td><td>{{ form.type }}</td>
+        </tr>
+        <tr>
+            <td><strong>Autorzy: </strong></td><td>{{ form.authors }}</td>
+        </tr>
+        <tr>
+            <td><strong>Tłumaczenie: </strong></td><td> {{ form.translation}}</td>
+        </tr>
+        <tr>
+        <td><strong>Ilustratorzy:</strong></td> <td>{{ form.illustrations }}</td>
+    </tr>
+    <tr>
+        <td><strong>Wydawca:</strong></td> <td> {{ form.publisher }}</td>
+    </tr>
+    <tr>
+        <td><strong>Liczba stron:</strong></td> <td>{{ form.pages }}</td>
+    </tr>
+    <tr>
+        <td><strong>Okładka:</strong></td> <td>{{ form.cover_type }}</td>
+    </tr>
+    <tr>
+        <td><strong>ISBN:</strong></td> <td>{{ form.isbn }}</td>
+    </tr>
+    </table>
 <input type="submit" value="Zapisz">
 </form>
 
