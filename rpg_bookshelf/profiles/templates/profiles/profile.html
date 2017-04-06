@@ -1,7 +1,16 @@
 {% extends 'library/index.html' %}
 
 {% block content %}
-<strong>Avatar:</strong> {{ profile.avatar }} <br>
+<h4>Dane konta</h4>
+<strong>Nazwa konta:</strong> {{ user.username }} <br>
+<strong>Imię:</strong> {{ user.first_name }} <br>
+<strong>Nazwisko:</strong> {{ user.last_name }} <br>
+{% if request.user.id == profile.user.id %}
+<a href="/update_user/{{ request.user.id }}" class = "btn btn-default">Zmień dane</a>
+{% endif %}
+
+<h4> Dane profilu</h4>
+<strong>Avatar:</strong> <img src="{{ profile.avatar }}"> <br>
 <strong>Pseudonim:</strong> {{ profile.nick }} <br>
 <strong>Ulubiony system:</strong> {{ profile.fav_system }}
 <br>
