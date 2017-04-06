@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 import os
 
@@ -16,11 +17,13 @@ TYPE = {
     (3, "Inne")
 }
 
+publisher_logo_storage = FileSystemStorage(location='media/publisher_logo')
+
 def get_sys_logo_path(instance, filename):
     return os.path.join('sys_logo', str(instance.id), filename)
 
 def get_publisher_logo_path(instance, filename):
-    return os.path.join('publisher_logo', str(instance.id), filename)
+    return os.path.join('media/publisher_logo/', str(instance.id), filename)
 
 def get_book_cover_path(instance, filename):
     return os.path.join('covers', str(instance.id), filename)
@@ -42,7 +45,7 @@ class System(models.Model):
 
 
 class Publisher(models.Model):
-    publisher_logo = models.ImageField(upload_to=get_publisher_logo_path, blank=True, null=True)
+    publisher_logo = models.ImageField(upload_to=get_publisher_logo_path, storage=publisher_logo_storage, blank=True, null=True, default='media/publisher_logo/brak_logo.jpg')
     name = models.CharField(max_length=32)
     description = models.TextField()
     web_page = models.URLField()

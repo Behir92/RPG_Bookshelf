@@ -61,7 +61,7 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						{% if request.user.is_authenticated %}
-						<li><a href="{% url 'profile' profile_id=user.profile.id %}"><strong>{{ user }}</strong></a></li>
+						<li><a href="{% url 'profile' profile_id=request.user.profile.id %}"><strong>{{ request.user }}</strong></a></li>
 						<li class="divider">
 								</li>
 						<li><a href="{% url 'logout' %}">Wyloguj</a></li>
@@ -83,7 +83,7 @@
 		<div class="col-md-3">
 
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 content panel panel-default">
 			{% block content %}
 			{% endblock %}
 		</div>

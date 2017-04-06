@@ -2,7 +2,7 @@
 
 {% block content %}
 <h4 align="center">{{ book.title }}</h4>
-{{ book.cover }}<br>
+<img src="{{ book.cover }}"><br>
 <a href="{% url 'shelf-add' book_id=book.id %}" class="btn btn-default">Dodaj na półkę</a>
 <table>
     <tr>
