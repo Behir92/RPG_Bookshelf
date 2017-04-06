@@ -52,10 +52,17 @@ class LogoutView(View):
 class ProfileView(View):
     def get(self, request,profile_id):
         profile = Profile.objects.get(pk=profile_id)
-        ctx = {'profile': profile}
+        user = User.objects.get(pk=profile.user.id)
+        ctx = {'profile': profile,
+               'user': user}
         return render(request, 'profiles/profile.html', ctx)
 
 class UpdateProfileView(UpdateView):
     template = 'profiles/profile_form.html'
     model = Profile
     fields = ['nick','avatar','fav_system']
+
+class UpdateUserView(UpdateView):
+    template = 'profile/user_form.html'
+    model = User
+    fields = ['email','first_name','last_name']
