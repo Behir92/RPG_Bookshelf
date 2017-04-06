@@ -44,7 +44,8 @@ from profiles.views import (
     LogoutView,
     ProfileView,
     RegisterProfileView,
-    UpdateProfileView
+    UpdateProfileView,
+    UpdateUserView,
 )
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -54,6 +55,7 @@ urlpatterns = [
     url(r'^logout$', LogoutView.as_view(), name='logout'),
     url(r'^profile/(?P<profile_id>(\d+))$', ProfileView.as_view(), name='profile'),
     url(r'^update_profile/(?P<pk>(\d+))$', UpdateProfileView.as_view(), name='update-profile'),
+    url(r'^update_user/(?P<pk>(\d+))$', UpdateUserView.as_view(), name= 'update-user'),
     url(r'^systems/$', SystemListView.as_view(), name='system-list'),
     url(r'^system_details/(?P<pk>(\d+))$', SystemView.as_view(), name='system-details'),
     url(r'^add_system/$', AddSystemView.as_view(), name='add-system'),
@@ -73,5 +75,5 @@ urlpatterns = [
     url(r'search_results/', SearchView.as_view(), name='search'),
     url(r'shelf/(?P<user_id>(\d+))$', ShelfView.as_view(), name='shelf'),
     url(r'shelf/add/(?P<book_id>(\d+))$', AddBookToShelfView.as_view(), name='shelf-add'),
-    url(r'shelf/delete/(?P<pk>(\d+))$', DeleteBookFromShelf.as_view(), name='shelf-delete')
+    url(r'shelf/delete/(?P<pk>(\d+))$', DeleteBookFromShelf.as_view(), name='shelf-delete'),
 ]

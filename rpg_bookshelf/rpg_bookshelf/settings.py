@@ -29,7 +29,8 @@ ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login/'
 
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = os.path.join('media')
+MEDIA_URL = '/media/'
 # Application definition
 
 INSTALLED_APPS = [
