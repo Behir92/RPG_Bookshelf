@@ -4,7 +4,17 @@
 {% if request.user.id == user.id %}
 <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
+    <table>
+        <tr>
+            <td>Adres email: </td><td>{{ form.email }}</td>
+        </tr>
+        <tr>
+            <td>Imię: </td><td>{{ form.first_name }}</td>
+        </tr>
+        <tr>
+            <td>Nazwisko: </td><td>{{ form.last_name }}</td>
+        </tr>
+    </table>
 <input type="submit" value="Zapisz">
 </form>
 {% else %}
