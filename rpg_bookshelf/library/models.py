@@ -3,6 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.db import models
 import os
 
+#from rpg_bookshelf.settings import MEDIA_ROOT
 
 COVER = {
     (1, 'Twarda'),
@@ -17,13 +18,12 @@ TYPE = {
     (3, "Inne")
 }
 
-publisher_logo_storage = FileSystemStorage(location='media/publisher_logo')
 
 def get_sys_logo_path(instance, filename):
     return os.path.join('sys_logo', str(instance.id), filename)
 
 def get_publisher_logo_path(instance, filename):
-    return os.path.join('media/publisher_logo/', str(instance.id), filename)
+    return os.path.join('publisher_logo', str(instance.id), filename)
 
 def get_book_cover_path(instance, filename):
     return os.path.join('covers', str(instance.id), filename)
@@ -32,20 +32,20 @@ def get_book_cover_path(instance, filename):
 # Create your models here.
 
 class System(models.Model):
-    sys_logo = models.ImageField(upload_to=get_sys_logo_path, blank=True, null=True)
+    sys_logo = models.ImageField(upload_to='library/static/sys_logo/', blank=True, null=True)
     name = models.CharField(max_length=256)
     edition = models.CharField(max_length=64)
     description = models.TextField()
 
     def __str__(self):
-        return self.name
+        return '{} {}'.format(self.name, self.edition)
 
     def get_absolute_url(self):
         return "/system_details/{}".format(self.pk)
 
 
 class Publisher(models.Model):
-    publisher_logo = models.ImageField(upload_to=get_publisher_logo_path, storage=publisher_logo_storage, blank=True, null=True, default='media/publisher_logo/brak_logo.jpg')
+    publisher_logo = models.ImageField(upload_to='library/static/publisher_logo/', blank=True, null=True)
     name = models.CharField(max_length=32)
     description = models.TextField()
     web_page = models.URLField()
@@ -66,7 +66,7 @@ class Author(models.Model):
         return "/author_details/{}".format(self.pk)
 
 class Book(models.Model):
-    cover = models.ImageField(upload_to=get_book_cover_path, blank=True, null=True)
+    cover = models.ImageField(upload_to="library/static/cover/", blank=True, null=True)
     title = models.CharField(max_length=256)
     system = models.ForeignKey(System)
     type = models.IntegerField(choices=TYPE)
