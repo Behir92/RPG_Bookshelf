@@ -4,9 +4,9 @@
 <h2 align="center">Podręczniki</h2>
 <ul>
 {% for book in books %}
-    <li class="list-group-item"><a href="{% url 'book-details' pk=book.pk %}"><strong>{{ book.title }}</strong></a><a href="{% url 'shelf-add' book_id=book.id %}" class="btn btn-default">Dodaj na półkę</a>
+    <li class="list-group-item"><a href="{% url 'book-details' pk=book.pk %}"><strong>{{ book.title }}</strong></a><a href="{% url 'shelf-add' book_id=book.id %}" class="btn btn-default" align="right">Dodaj na półkę</a>
          {% if perms.library.change_book %} <a href="{% url 'change-book' pk=book.pk %}" class="btn btn-default">Zmień</a>{% endif %}<br>
-    <strong>System: </strong>{{ book.system }}, <strong> Edycja: </strong> {{ book.system.edition }}</li>
+    <strong>System: </strong>{{ book.system.name }}, <strong> Edycja: </strong> {{ book.system.edition }}</li>
 {% empty %}
     <p align="center">Nie ma jeszcze żadnych podręczników</p>
 {% endfor %}

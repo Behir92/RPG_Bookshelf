@@ -2,17 +2,17 @@
 
 {% block content %}
 <h4 align="center">{{ book.title }}</h4>
-<img src="{{ book.cover }}"><br>
+<p align="center"><img src="/{{ book.cover }}" height="300" width="200"></p><br>
 <a href="{% url 'shelf-add' book_id=book.id %}" class="btn btn-default">Dodaj na półkę</a>
 <table>
     <tr>
         <td><strong>System:</strong></td><td><a href="{% url 'system-details' pk=book.system.id %}"> {{ book.system }}</a></td>
     </tr>
     <tr>
-        <td><strong>Rodzaj:</strong></td> <td>{{ book.type }}</td>
+        <td><strong>Rodzaj:</strong></td> <td>{{ book.get_type_display }}</td>
     </tr>
     <tr>
-        <td><strong>System:</strong></td> <td>{{ book.system }}</td>
+        <td><strong>Rok wydania:</strong></td> <td>{{ book.year }}</td>
     </tr>
     <tr>
         <td><strong>Autorzy:</strong></td> <td> {% for author in authors %} <a href="{{ author.get_absolute_url }}">{{ author }}</a>,
@@ -33,7 +33,7 @@
         <td><strong>Liczba stron:</strong></td> <td>{{ book.pages }}</td>
     </tr>
     <tr>
-        <td><strong>Okładka:</strong></td> <td>{{ book.cover_type }}</td>
+        <td><strong>Okładka:</strong></td> <td>{{ book.get_cover_type_display }}</td>
     </tr>
     <tr>
         <td><strong>ISBN:</strong></td> <td>{{ book.isbn }}</td>
@@ -41,5 +41,5 @@
 </table>
 
 <h4 align="center"><b>Opis</b></h4>
-{{ book.description }}
+<p align="justify">{{ book.description }}</p>
 {% endblock %}

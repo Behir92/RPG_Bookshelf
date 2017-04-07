@@ -1,7 +1,7 @@
 {% extends 'library/index.html' %}
 
 {% block content %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
         <tr>
@@ -37,8 +37,14 @@
     <tr>
         <td><strong>Okładka:</strong></td> <td>{{ form.cover_type }}</td>
     </tr>
+        <tr>
+        <td><strong>Rok wydania:</strong></td> <td>{{ form.year }}</td>
+    </tr>
     <tr>
         <td><strong>ISBN:</strong></td> <td>{{ form.isbn }}</td>
+    </tr>
+    <tr>
+        <td><strong>Opis:</strong></td> <td>{{ form.description }}</td>
     </tr>
     </table>
 <input type="submit" value="Zapisz">
