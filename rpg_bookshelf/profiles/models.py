@@ -7,7 +7,7 @@ def get_image_path(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    avatar = models.ImageField(upload_to='library/static/avatars/', blank=True, null=True)
     nick = models.CharField(max_length=32)
     fav_system = models.CharField(max_length=128)
 
