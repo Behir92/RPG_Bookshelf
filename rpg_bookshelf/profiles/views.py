@@ -66,3 +66,4 @@ class UpdateUserView(UpdateView):
     template = 'profile/user_form.html'
     model = User
     fields = ['email','first_name','last_name']
+    success_url = '/'
