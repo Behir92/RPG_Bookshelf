@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if request.user.id == profile.user.id %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <strong> Nick: </strong> {{ form.nick }} <br>
     <strong> Ulubiony system: </strong> {{ form.fav_system }}<br>
