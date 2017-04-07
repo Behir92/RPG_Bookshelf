@@ -29,8 +29,10 @@ ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login/'
 
-MEDIA_ROOT = os.path.join('media')
-MEDIA_URL = '/media/'
+
+# PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+# MEDIA_ROOT = os.path.join(PROJECT_DIR,'library/media')
+# MEDIA_URL = 'library/media/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -126,4 +128,6 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/library/static/'
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR,'/library/static/')
