@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from library.views import (
 AddAuthorView,
 AddBookToShelfView,
@@ -76,4 +78,4 @@ urlpatterns = [
     url(r'shelf/(?P<user_id>(\d+))$', ShelfView.as_view(), name='shelf'),
     url(r'shelf/add/(?P<book_id>(\d+))$', AddBookToShelfView.as_view(), name='shelf-add'),
     url(r'shelf/delete/(?P<pk>(\d+))$', DeleteBookFromShelf.as_view(), name='shelf-delete'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
